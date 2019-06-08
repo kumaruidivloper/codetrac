@@ -1,0 +1,9 @@
+{
+    "publicCatalog": [
+      {
+        "id": 1,
+        "question": "What are Angular expressions?",
+        "answer": "Answer"
+      }
+    ]
+  }
