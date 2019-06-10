@@ -1,0 +1,13 @@
+.form-group .help-text-error {
+  margin-bottom: 0;
+  padding-top: 5px;
+  min-height: 9px;
+  font-family: Muli;
+  font-size: 11px;
+  font-weight: 300;
+  font-style: normal;
+  font-stretch: normal;
+  letter-spacing: normal;
+  text-align: left;
+  color: #ff4949 !important;
+}

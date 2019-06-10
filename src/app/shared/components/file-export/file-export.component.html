@@ -1,0 +1,17 @@
+<button *ngIf="element==='button'" (click)="exportToExcel()" class="btn btn-blue text-white float-right mr-1"><i class="fa fa-file-excel-o mr-1"></i> {{ buttonLabel }}</button>
+<a *ngIf="element==='link'" class="color-blue" (click)="exportToExcel()" > {{ buttonLabel }}</a>
+<div style="position: absolute; z-index: 1; margin-left: 15em; margin-top: 8em">
+  <!--<svg class="spinner" viewBox="0 0 50 50" *ngIf="user_transaction_loading">
+    <circle
+      class="path"
+      cx="25"
+      cy="25"
+      r="20"
+      fill="none"
+      stroke-width="5"
+    ></circle>
+  </svg>-->
+
+  <!-- <div class="col-md-3" *ngIf="!batch_id"><h4 class="font-weight-bold">User Management</h4></div> -->
+
+</div>

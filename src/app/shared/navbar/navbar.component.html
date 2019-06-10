@@ -1,0 +1,204 @@
+<!-- fixed-top-->
+<nav class="header-navbar navbar-expand-md navbar navbar-with-menu fixed-top navbar-semi-dark navbar-shadow"
+>
+  <div class="navbar-wrapper">
+    <div class="navbar-header expanded bg-white" (mouseenter) ="mouseEnter()" (mouseleave) ="mouseLeave()">
+      <ul class="nav navbar-nav flex-row">
+        <li class="nav-item mobile-menu d-md-none mr-auto">
+          <a class="nav-link nav-menu-main menu-toggle hidden-xs">
+            <i class="ft-menu font-large-1 text-dark"></i>
+          </a>
+        </li>
+        <li class="nav-item mr-auto">
+          <a class="navbar-brand">
+            <h2 class="brand-text">
+              <img
+                class="brand-logo"
+                [src]="logoUrl ? logoUrl : '../../../assets/icons/edunxt_logo.svg'" alt="EduNxt"
+                height="40"
+              />
+            </h2>
+          </a>
+        </li>
+         <!-- *ngIf="show" d-md-block  d-none-->
+        <!-- <li class="nav-item d-done float-right">
+
+          <a
+            data-toggle="collapse"
+            class="nav-link modern-nav-toggle pr-0 text-dark"
+            >
+            <div [hidden]="!show">
+            <i
+              data-ticon="ft-toggle-left"
+              class="toggle-icon ft-toggle-left font-medium-3"
+              id="stackNavToggle1"
+            ></i
+          >
+        </div>
+        </a>
+        </li> -->
+        <li class="nav-item d-md-none">
+          <a
+            data-toggle="collapse"
+            data-target="#navbar-mobile"
+            class="nav-link open-navbar-container text-dark"
+          >
+            <i class="fa fa-ellipsis-v"></i>
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="navbar-container content">
+      <div id="navbar-mobile" class="collapse navbar-collapse">
+        <ul class="nav navbar-nav mr-auto float-left">
+          <li class="nav-item d-none d-md-block">
+            <a
+              routerLink="/changelog"
+              class="nav-link nav-menu-main hidden-xs font-small-3 d-none"
+              id="stackNavBack"
+              #stackNavBack
+            >
+              <i class="ft-arrow-left"></i> {{'components1.navbar_comp.back' | translate}}
+            </a>
+          </li>
+        </ul>
+
+        <ul class="nav navbar-nav float-right">
+
+          <li
+          class="dropdown dropdown-user nav-item flag-icon-position"
+          ngbDropdown
+          placement="bottom-right"
+        >
+              <a class="dropdown-toggle nav-link" id="dropdown-flag" href="#" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false">
+              <img width='20' [src]="language == 'en' ? '../../../assets/icons/gb.svg' : '../../../assets/icons/in.svg'">
+              </a>
+              <div ngbDropdownMenu aria-labelledby="dropdownUser">
+                <a class="dropdown-item" href="javascript:void(0);" (click)="useLanguage('en')"><img class="mr-1" width='20' src='../../../assets/icons/gb.svg'>English</a>
+                <a class="dropdown-item" href="javascript:void(0);" (click)="useLanguage('hi')"><img class="mr-1" width='20' src='../../../assets/icons/in.svg'>Hindi</a>
+              </div>
+            </li>
+
+          <li class="dropdown dropdown-notification nav-item" ngbDropdown>
+            <a
+              href="javascript:;"
+              class="nav-link dropdown-user-link"
+              [ngClass]="{'dropdown-toggle' : domainNameList.length > 1 }"
+              id="dropDownBank"
+              ngbDropdownToggle
+            >
+              <span class="avatar">
+                <img src='/assets/icons/institute_icon.png'
+                  alt=""
+              /></span>
+
+              <span class="user-name">{{ domainName }}</span>
+            </a>
+            <ul *ngIf="domainNameList.length > 1"
+              class="dropdown-menu dropdown-menu-media dropdown-menu-right show"
+            >
+
+            </ul>
+          </li>
+
+          <li class="dropdown dropdown-notification nav-item all-courses-menu mr-1" ngbDropdown *ngIf="allActiveCourses && allActiveCourses.length > 0">
+            <a
+              href="javascript:;"
+              class="nav-link dropdown-user-link"
+              [ngClass]="{'dropdown-toggle' : allActiveCourses.length > 0 }"
+              id="dropDownBank"
+              ngbDropdownToggle
+            >
+              <span class="avatar all-courses-menu-tag">
+                <i _ngcontent-c2="" class="icon-courses_icon" ng-reflect-ng-class="icon-courses_icon"></i></span>
+
+              <span class="user-name">All Courses</span>
+            </a>
+            <ul *ngIf="domainNameList.length > 1 && allActiveCourses.length > 0"
+              class="dropdown-menu dropdown-menu-media dropdown-menu-right show"
+            >
+            <!-- <ng-scrollbar> -->
+              <li
+                class="media-list"
+              >
+              <!-- scrollable-container media-list ps-container ps-theme-dark ps-active-y -->
+
+                <div class="media" *ngFor="let course of allActiveCourses">
+                  <div class="header-org-image-height border-0">
+                    <img alt="avatar" class="header-course-image" src="{{course.courselogo_uri}}">
+                  </div>
+                  <div class="media-body"><h6 _ngcontent-c1="" class="media-heading display-inline text-dark">{{course.name}}</h6>
+                    <a class="font-size-small display-block color-blue" (click)="navCourseOverview(course._id)">Edit Course</a>
+                  </div>
+                </div>
+
+
+                <a *ngIf="!hideViewAll" class="float-right color-blue mt-1" [routerLink]="['/course/courselist']">View All<i class="icon-right_arrow_blue ml-1"></i></a>
+              </li>
+            <!-- </ng-scrollbar> -->
+            </ul>
+          </li>
+
+
+
+
+          <li
+            class="dropdown dropdown-user nav-item"
+            ngbDropdown
+            placement="bottom-right"
+          >
+            <a
+              href="javascript:;"
+              class="dropdown-toggle nav-link dropdown-user-link"
+              id="dropdownUser"
+              ngbDropdownToggle
+            >
+              <span class="avatar">
+                <img [src]="profileImageUrl" alt="{{ displayname }}" /> <i></i>
+              </span>
+              <span class="user-name">{{ displayname }}</span>
+            </a>
+            <div ngbDropdownMenu aria-labelledby="dropdownUser">
+              <!-- <a class="dropdown-item" href="javascript:;">
+                <i class="ft-user"></i> Edit Profile
+              </a>
+              <a class="dropdown-item" href="javascript:;">
+                <i class="ft-mail"></i> My Inbox
+              </a> -->
+              <a
+                class="dropdown-item"
+                href="javascript:void(0);"
+                (click)="navProfileLearner()"
+              >
+                <i class="ft-check-square"></i>{{'components1.navbar_comp.my_profile' | translate}}
+              </a>
+              <div class="dropdown-divider"></div>
+              <a
+                class="dropdown-item"
+                href="javascript:void(0);"
+                data-toggle="modal"
+                data-target="#forcechangepswd"
+                (click)="onClickChangePassword()"
+              >
+                <i class="ft-check-square"></i>{{'components1.navbar_comp.change_pass' | translate}}
+              </a>
+              <!-- <a class="dropdown-item" href="javascript:;">
+                <i class="ft-message-square"></i> Chats
+              </a> -->
+              <div class="dropdown-divider"></div>
+              <a
+                class="dropdown-item"
+                href="javascript:void(0);"
+                (click)="logOut()"
+              >
+                <i class="ft-power"></i> {{'components1.navbar_comp.logout' | translate}}
+              </a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav>

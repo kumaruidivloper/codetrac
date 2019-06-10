@@ -1,0 +1,17 @@
+<div class="modal-header modal-block-primary">
+  
+  <h4 class="modal-title">Discard Changes?</h4>
+  <!-- <button type="button" class="close" (click)="bsModalRef.hide()">
+    <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+  </button> -->
+</div>
+<div class="modal-body clearfix">
+  
+  <div class="modal-text">
+    <p>Your changes have not been saved</p>
+  </div>
+</div>
+<div class="modal-footer">
+  <button class="btn btn-default" (click)="action(false)">Cancel</button>
+  <button class="btn btn-blue float-right text-white" (click)="action(true)">Discard</button>
+</div>

@@ -1,0 +1,64 @@
+<div nz-row>
+  <div nz-col [nzXs]="{ span: 20, offset: 4}" [nzMd]="{ span:5, offset: 1}" [nzLg]="{ span: 6, offset: 2 }">
+      <nz-card class="login-position">
+          <nz-tabset>
+              <nz-tab nzTitle="Sign in">
+                <form nz-form [formGroup]="validateForm" class="login-form" (ngSubmit)="submitForm()">
+                  <nz-form-item>
+                    <nz-form-control>
+                      <nz-input-group [nzPrefix]="prefixUser">
+                        <input type="text" nz-input formControlName="userName" placeholder="Username" />
+                      </nz-input-group>
+                      <nz-form-explain *ngIf="validateForm.get('userName')?.dirty && validateForm.get('userName')?.errors"
+                        >Please input your username!</nz-form-explain
+                      >
+                    </nz-form-control>
+                  </nz-form-item>
+                  <nz-form-item>
+                    <nz-form-control>
+                      <nz-input-group [nzPrefix]="prefixLock" [nzSuffix]="suffixTemplate">
+                        <input  [type]="passwordVisible ? 'text' : 'password'" nz-input formControlName="password" placeholder="Password" />
+                      </nz-input-group>
+                      <nz-form-explain *ngIf="validateForm.get('password')?.dirty && validateForm.get('password')?.errors"
+                        >Please input your Password!</nz-form-explain
+                      >
+                    </nz-form-control>
+                  </nz-form-item>
+                  <nz-form-item>
+                    <nz-form-control>
+                      <label nz-checkbox formControlName="remember">
+                        <span>Remember me</span>
+                      </label>
+                      <a class="login-form-forgot">Forgot password?</a>
+                      <button nz-button class="login-form-button" nz-button  nzShape="round"[nzType]="'primary'">Sign in</button>
+                    </nz-form-control>
+                  </nz-form-item>
+                  <nz-divider class="divider-text" nzText="Or connect with"></nz-divider>
+                  <nz-form-item>
+                    <nz-form-control>
+                      <button class="social-button-fb" nz-button nzShape="round" nzType="default"><i nz-icon nzType="facebook" nzTheme="fill"></i> Facebook</button>
+                      <button class="social-button-google" nz-button nzShape="round" nzType="default"><i nz-icon nzType="google" nzTheme="outline"></i> Google</button>
+                      <button class="social-button-ln" nz-button nzShape="round" nzType="default"><i nz-icon nzType="linkedin" nzTheme="fill"></i> Linkedin</button>
+                    </nz-form-control>
+                  </nz-form-item>
+                </form>
+                <ng-template #prefixUser><i nz-icon type="user"></i></ng-template>
+                <ng-template #prefixLock><i nz-icon type="lock"></i></ng-template>
+                <ng-template #suffixTemplate>
+                    <i nz-icon [nzType]="passwordVisible ? 'eye-invisible' : 'eye'" (click)="passwordVisible = !passwordVisible"></i>
+                  </ng-template>
+
+              </nz-tab>
+              <nz-tab nzTitle="Sign up">
+                  <!-- <app-register></app-register> -->
+              </nz-tab>
+
+            </nz-tabset>
+
+        </nz-card>
+  </div>
+  <div nz-col [nzXs]="{ span: 24}"  [nzMd]="{ span: 16, offset: 2 }" [nzLg]="{ span: 12, offset: 4 }">
+    &nbsp;
+  </div>
+
+</div>

@@ -1,0 +1,105 @@
+<form #supportDetails="ngForm" (ngSubmit)="submitSupportDetails(supportDetails)">
+    <div class="modal fade" #modalRef id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header border-bottom-0">
+              <h5 class="modal-title font-weight-bold" id="exampleModalCenterTitle">Get Support</h5>
+              <a href="" #cancelModal class="close font-size-base" data-dismiss="modal" aria-label="Close"><i class="icon-delete_icon_black"></i></a>
+            </div>
+
+            <div class="modal-body">
+                <div class="form-group height-80">
+                  <label for="supportDropDownContent">Subject</label>
+                  <select class="form-control select-dropdown" id="supportDropDownContent" name="supportDropDownContent" required ngModel #supportDropDownContent="ngModel">
+                      <option value=''>Please Select Subject</option>
+                    <option *ngFor="let item of supportDropDownVal" [value]="item">{{ item }}</option>
+                  </select>
+                  <p class="help-text-error" *ngIf="!supportDropDownContent.valid && (supportDropDownContent.touched|| supportDetails.submitted)">Please
+                      select from Drop down</p>
+                </div>
+                <div class="form-group height-80" *ngIf=isVisible>
+                  <label for="regnumber">Registration Number</label>
+                  <input type="text" value={{regno}} class="form-control reg-number" id="regnumber" name= "regnumber" placeholder="Enter Registration Number" required pattern="^(?!\s*$)[-a-zA-Z0-9_:,.' ']{1,100}$" ngModel #regnumber="ngModel">
+                  <p class="help-text-error" *ngIf="(!regnumber.valid && regnumber.value.trim().length > 0) && (regnumber.touched|| supportDetails.submitted)">Please
+                      Enter valid registration number</p>
+                      <p class="help-text-error" *ngIf="(!regnumber.valid && regnumber.value.trim().length === 0) && (regnumber.touched || supportDetails.submitted)">Please
+                        Enter Registration Number</p>
+                </div>
+                    <div class="form-group height-80" *ngIf=isVisible>
+                        <label for="phoneNo">Phone Number</label>
+
+                        <div class="input-group clockpicker">
+                            <span class="input-group-addon border-left-0">
+                              <select
+                                class="form-control select-dropdown timedropdown"
+                                id="user_country_code"
+                                name="user_country_code"
+                                [(ngModel)]="selectedCountryCode"
+                                    required
+                              >
+                                <option
+                                *ngFor="let option of countryCodeData"
+                                [value]="option.value"
+                              >
+                                {{ option.label }}
+                                </option>
+                              </select>
+                            </span>
+                            <input
+                              type="text"
+                              class="form-control timeinput"
+                              id="phoneNo"
+                          name="phoneNo"
+                          #phoneNo="ngModel"
+                          ngModel
+                          value={{phno}}
+                          required
+                          pattern="^[1-9]\d{9}$"
+                          placeholder="Enter Phone number"
+                            />
+                            <!-- [pattern]="phonePattern" -->
+                          </div>
+                      <p  class="help-text-error text-center" *ngIf="(!phoneNo.valid && phoneNo.value.trim().length > 0) && (phoneNo.touched|| supportDetails.submitted)">Please
+                          Enter valid Phone number
+                      </p>
+                      <p class="help-text-error" style="padding-left: 30%" *ngIf="(!phoneNo.valid && phoneNo.value.trim().length === 0) && (phoneNo.touched || supportDetails.submitted)">Please
+                       Enter Phone Number</p>
+                        <!-- [pattern]="phonePattern" -->
+                      </div>
+
+                      <div class="form-group height-80" *ngIf=isVisible>
+                        <label for="emailId">Email ID</label>
+                        <input type="email" class="form-control input-text-email" id="emailId" name="emailId" value={{emailid}} placeholder="Enter email id" required
+                        pattern="^^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$" ngModel #emailId="ngModel">
+                        <p class="help-text-error" *ngIf="(!emailId.valid && emailId.value.trim().length > 0) && (emailId.touched || supportDetails.submitted)">Please
+                        Enter valid Email Id</p>
+                        <p class="help-text-error" *ngIf="(!emailId.valid && emailId.value.trim().length === 0) && (emailId.touched || supportDetails.submitted)">Please
+                        Enter an Email Id</p>
+                        </div>
+
+
+                <div class="form-group">
+                  <label for="msgdesc">Message</label>
+                  <textarea class="form-control text-message-box" id="msgdesc" name="msgdesc" rows="3" placeholder="Enter your message" ngModel #msgdesc="ngModel" required></textarea>
+                  <p class="help-text-error" *ngIf="!msgdesc.valid && (msgdesc.touched || supportDetails.submitted)">Please
+                      Enter Message Description</p>
+
+                </div>
+            </div>
+
+            <div class="modal-footer border-top-0">
+              <button  type="button" class="btn bg-white color-blue cancel-btn px-3" (click)="closeSupportModal()">Cancel</button>
+              
+              <button  *ngIf='!is_loading' type="submit" class="btn btn-blue  text-white">Send Message</button>
+
+              <button *ngIf='is_loading' disabled  class="btn btn-blue float-right btn-loading width-160">
+                <i class="fa fa-circle-o-notch fa-spin fa-fw"></i></button>
+              
+              
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </form>

@@ -1,0 +1,26 @@
+Changes for profile header
+
+# --------------
+# Please enter the commit message for your changes. Everything below
+# this paragraph is ignored, and an empty message aborts the commit.
+# Just close the window to accept your message.
+diff --git a/web-app/src/app/shared/components/profile-header/profile-header.component.html b/web-app/src/app/shared/components/profile-header/profile-header.component.html
+index 81c2c70..e9c6d04 100644
+--- a/web-app/src/app/shared/components/profile-header/profile-header.component.html
++++ b/web-app/src/app/shared/components/profile-header/profile-header.component.html
+@@ -17,14 +17,7 @@
+ 
+ <ng-template class="header-profile-section" #editbatchcont>
+     <div class="col-md-1 py-3 pl-4">
+-        <div>
+-          <img
+-            src="../../assets/images/profile_icon.png"
+-            class="rounded-circle profile-image-custom"
+-            alt="profile"
+-          />
+-          <!-- <span class="profile-dot"></span> -->
+-        </div>
++        <div><img class="rounded-circle profile-image-custom" [src]="profileImgUrl" alt="profile"></div>
+       </div>
+       <div class="col-md-7 pt-4">
+         <h4 id="loggedinUsername" class="loggedin-username" for="username">
