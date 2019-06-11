@@ -8,6 +8,38 @@ Step2: npm start run [command for run the application]
 Step4: application open in portal localhost:4200
 Step5: server running in localhost:3000
 
+
+## Server SetUp
+
+STEP1: Create server folder
+STEP2: inside server folder run commend [npm init --yes]
+// express our server
+// body-parser middleware to handle form data such as user registration
+or login
+STEP3: run command [npm install express body-parser --save]
+// After step-3 node module and package json will be installed in server folder
+STEP4: create server.js file in server folder
+// Edit below code for your server
+
+const express = require('express');
+const bodyParser = require('body-parser');
+
+const PORT = 4000;
+
+const app = express();
+
+app.use(bodyParser.json());
+
+app.get('/', function(req, res) {
+    res.send('Hello from server');
+})
+
+app.listen(PORT, function(){
+    console.log('Server running on localhost:' + PORT)
+})
+
+STEP: Run server - node serve [server will run port-4000]
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
