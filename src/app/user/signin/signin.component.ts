@@ -9,6 +9,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { NzMessageService } from 'ng-zorro-antd';
+import { AuthService } from '../../shared/auth/auth.service';
 @Component({
   selector: 'codetrac-signin',
   templateUrl: './signin.component.html',
@@ -32,27 +33,28 @@ export class SigninComponent implements OnInit {
 
   constructor(private fb: FormBuilder,
               private http: HttpClient,
+              private auth: AuthService,
               private router: Router,
               private message: NzMessageService) {
-      this.http.get(this.jsonURL).subscribe(data => {
+      // this.http.get(this.jsonURL).subscribe(data => {
   // tslint:disable-next-line: no-string-literal
-        this.auname = data['username'];
+        // this.auname = data['username'];
   // tslint:disable-next-line: no-string-literal
-        this.apassword = data['password'];
-        console.log(data);
-       });
+        // this.apassword = data['password'];
+        // console.log(data);
+       // });
      }
 
      ngOnInit() {
       this.validateForm = this.fb.group({
-        userName: [null, [Validators.required]],
+        email: [null, [Validators.required]],
         password: [null, [Validators.required]],
         remember: [true]
       });
     }
 
     submitForm() {
-      const username = this.validateForm.controls.userName.value;
+      const email = this.validateForm.controls.email.value;
       const password = this.validateForm.controls.password.value;
   // tslint:disable-next-line: forin
       for (const i in this.validateForm.controls) {
@@ -60,24 +62,28 @@ export class SigninComponent implements OnInit {
         this.validateForm.controls[i].updateValueAndValidity();
       }
 
-      if (this.validateForm.valid) {
-        setTimeout(() => {
-          this.isLoadingOne = false;
-        }, 5000);
-        if (username === this.auname && password === this.apassword) {
-          this.isLoadingOne = false;
-              this.router.navigate(['/dashboard']);
-            // alert("redirect to dashboard");
-          } else {
-            this.message.create('error', `Invalid UserName or Password Try again`);
-            this.isLoadingOne = false;
-            // this.showError = true;
-            // this.errMessage = "Warning";
-            // this.errDescription = "Invalid UserName or Password Try again";
-            // alert("Invalid UserName or Password Try again");
-          }
-      }
+      // if (this.validateForm.valid) {
+      //   setTimeout(() => {
+      //     this.isLoadingOne = false;
+      //   }, 5000);
+      //   if (username === this.auname && password === this.apassword) {
+      //     this.isLoadingOne = false;
+      //         // this.router.navigate(['/dashboard']);
+      //       // alert("redirect to dashboard");
+      //     } else {
+      //       // this.message.create('error', `Invalid UserName or Password Try again`);
+      //       this.isLoadingOne = false;
+      //       // this.showError = true;
+      //       // this.errMessage = "Warning";
+      //       // this.errDescription = "Invalid UserName or Password Try again";
+      //       // alert("Invalid UserName or Password Try again");
+      //     }
+      // }
 
-
+      console.log(this.validateForm.value);
+      this.auth.loginuser(this.validateForm.value)
+      .subscribe(
+        res => console.log(res),
+        err => console.log(err));
     }
 }

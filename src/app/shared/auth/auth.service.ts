@@ -1,30 +1,21 @@
 import { Router } from '@angular/router';
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
-@Injectable()
+@Injectable(
+  {
+    providedIn: 'root'
+  }
+)
 export class AuthService {
-  token: string;
 
-  constructor() {}
+  private loginUrl = 'http://localhost:4000/api/login';
 
-  signupUser(email: string, password: string) {
-    //your code for signing up the new user
+  constructor(private http: HttpClient) {}
+
+  loginuser(user) {
+    console.log(user)
+    return this.http.post<any>(this.loginUrl, user)
   }
-
-  signinUser(email: string, password: string) {
-    //your code for checking credentials and getting tokens for for signing in user
-  }
-
-  logout() {   
-    this.token = null;
-  }
-
-  getToken() {    
-    return this.token;
-  }
-
-  isAuthenticated() {
-    // here you can check if user is authenticated or not through his token 
-    return true;
-  }
+  
 }

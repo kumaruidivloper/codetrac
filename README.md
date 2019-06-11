@@ -209,6 +209,13 @@ router.get('/dashboard', (req, res) => {
 module.exports = router
 
 
+## Fixing CORS issue 
+
+Step1: install cors in server folder cmd [npm install --save cors]
+[{email: "y@y.com", password: "y"}] 
+
+
+
 
 ## Development server
 
