@@ -38,7 +38,7 @@ app.listen(PORT, function(){
     console.log('Server running on localhost:' + PORT)
 })
 
-STEP: Run server - node serve [server will run port-4000]
+STEP: Run server - node server [server will run port-4000]
 
 ## Development server
 
