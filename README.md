@@ -38,7 +38,51 @@ app.listen(PORT, function(){
     console.log('Server running on localhost:' + PORT)
 })
 
-STEP: Run server - node server [server will run port-4000]
+STEP5: Run server - node server [server will run port-4000]
+
+
+
+## Router API.Json
+STEP1: Create router folder inside server folder
+STEP2: Create api.js file inside the router folder
+
+<!--paste the below code in api.js-->
+
+[const express = require('express');
+const router = express.Router();
+
+router.get('/', (req, res) => {
+    res.send('From API Route')
+})]
+
+STEP3: Update the below code in server.js
+
+[const express = require('express');
+const bodyParser = require('body-parser');
+
+const PORT = 4000;
+const api = require('./routes/api')
+
+const app = express();
+
+app.use(bodyParser.json());
+
+app.use('/api', api)
+
+app.get('/', function(req, res) {
+    res.send('Hello from server');
+})
+
+app.listen(PORT, function(){
+    console.log('Server running on localhost:' + PORT)
+})]
+
+STEP5:run cmd [node server] navigate to http://localhost:4000/api 
+
+
+module.exports = router
+
+
 
 ## Development server
 
