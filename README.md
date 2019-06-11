@@ -2,11 +2,27 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.0.
 
+## Initial Setup [Fake-server]
+ 
+Step1: ng new --style=scss --routing 
+Step2: npm install json-server 
+Step3: create db.json 
+Step4: Create some initial Data in db.json file 
+Step5: Edit package.json start property ["start": "concurrently "ng serve" "json-server --watch db.json" ",] 
+Step6: npm install concurrently Step7: npm run start [For run the app]
+
 ## Steps For Run The Application
+
 Step:1 npm install
 Step2: npm start run [command for run the application]
 Step4: application open in portal localhost:4200
 Step5: server running in localhost:3000
+
+## Ng-Ant-UI-setup-Guid
+
+Step1: App Creation Cmd [ng new --style=scss --routing --prefix myprefix] 
+Application naming ref-Link [https://stackoverflow.com/questions/41248142/angular2-how-to-change-the-default-prefix-of-component-to-stop-tslint-warnings]
+Step2: ng-ant Ref-link [https://ng.ant.design/docs/getting-started/en]
 
 ## Development server
 
