@@ -86,8 +86,44 @@ STEP5:run cmd [node server] navigate to http://localhost:4000/api
 ## Mongoose DB Connection
 
 STEP1: install mongoose inside server folder [npm install --save mongoose]
-
 STEP2: Create blue-print Or Schema of the the DB Object in server folder so inside server folder create folder called models --> user.js
+STEP3: Paste the below code in user.js
+
+[const mongoose = require('mongoose');
+
+const Schema = mongoose.Schema;
+const userSchema = new Schema({
+    email: String,
+    password: String
+})
+
+module.exports = mongoose.model('user', userSchema, 'users')]
+
+STEP4: For DB Connection paste below code in api.js File
+[
+const express = require('express');
+const router = express.Router();
+
+const mongoose = require('mongoose');
+const db = "mongodb+srv://kumar:kumar1234@cluster0-t6xml.mongodb.net/test?retryWrites=true"
+
+mongoose.connect(db, err => {
+    if (err) {
+        console.error('Error!', + err)
+    } else {
+        console.log('connected to mongodb')
+    }
+})
+
+
+router.get('/', (req, res) => {
+    res.send('From API Route')
+})
+
+
+module.exports = router
+]
+
 
 
 
