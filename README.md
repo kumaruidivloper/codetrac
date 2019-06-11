@@ -77,10 +77,20 @@ app.listen(PORT, function(){
     console.log('Server running on localhost:' + PORT)
 })]
 
-STEP5:run cmd [node server] navigate to http://localhost:4000/api 
-
 
 module.exports = router
+
+
+STEP5:run cmd [node server] navigate to http://localhost:4000/api
+
+## Mongoose DB Connection
+
+STEP1: install mongoose inside server folder [npm install --save mongoose]
+
+STEP2: Create blue-print Or Schema of the the DB Object in server folder so inside server folder create folder called models --> user.js
+
+
+
 
 
 
