@@ -83,7 +83,11 @@ export class SigninComponent implements OnInit {
       console.log(this.validateForm.value);
       this.auth.loginuser(this.validateForm.value)
       .subscribe(
-        res => console.log(res),
+        res => {
+          console.log(res);
+          localStorage.setItem('token', res.token);
+          this.router.navigate(['/dashboard']);
+        },
         err => console.log(err));
     }
 }

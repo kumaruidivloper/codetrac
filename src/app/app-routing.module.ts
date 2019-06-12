@@ -3,11 +3,17 @@ import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
 import { AuthGuard } from './core/guards/auth.guard';
 import { CanDeactivateGuardService } from './core/services/can-deactivate-guard.service';
 import { from } from 'rxjs';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 const routes: Routes = [
   {
     path: '',
     loadChildren: './user/user.module#UserModule'
+  },
+
+  {
+    path: 'dashboard',
+    component: DashboardComponent
   }
   // },
   // // {
