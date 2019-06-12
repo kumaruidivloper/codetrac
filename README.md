@@ -214,8 +214,8 @@ module.exports = router
 Step1: install cors in server folder cmd [npm install --save cors]
 [{email: "y@y.com", password: "y"}] 
 
-
-
+## Login-with-JWT-token
+Step1: install jwt token in server - cmd [npm install jsonwebtoken --save]
 
 ## Development server
 
