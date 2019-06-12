@@ -12,13 +12,13 @@ export class TokenInterceptorService implements HttpInterceptor {
 
   intercept(req, next) {
 // tslint:disable-next-line: prefer-const
-    let authService = this.injector.get(AuthService)
+    let authService = this.injector.get(AuthService);
     const tokenizedReq = req.clone({
       setHeaders: {
         Authorization: `Bearer ${authService.getToken()}`
       }
     });
 
-    return next.handle(tokenizedReq)
+    return next.handle(tokenizedReq);
   }
 }
