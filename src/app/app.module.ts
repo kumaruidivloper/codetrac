@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NgZorroAntdModule, NZ_I18N, en_US } from 'ng-zorro-antd';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { HttpClientModule, HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { registerLocaleData } from '@angular/common';
 import en from '@angular/common/locales/en';
@@ -19,6 +19,8 @@ import { ToastrModule } from 'ngx-toastr';
 import { ConfirmLeaveComponent } from './shared/components/confirm-leave/confirm-leave.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AuthGuard } from '../app/core/guards/auth.guard';
+import { TokenInterceptorService } from '../app/core/token-interceptor.service';
+
 
 registerLocaleData(en);
 
@@ -51,7 +53,10 @@ registerLocaleData(en);
       closeButton: true
     })
   ],
-  providers: [{ provide: NZ_I18N, useValue: en_US }, AuthGuard],
+  providers: [{ provide: NZ_I18N, useValue: en_US }, AuthGuard,
+  {provide: HTTP_INTERCEPTORS,
+  useClass: TokenInterceptorService,
+  multi: true }],
   bootstrap: [AppComponent],
   entryComponents: [
     ConfirmLeaveComponent,
