@@ -12,12 +12,13 @@ import en from '@angular/common/locales/en';
 import { SharedModule } from './shared/shared.module';
 import { CoreModule } from './core/core.module';
 import { AuthService } from './shared/auth/auth.service';
-import { AuthGuard } from './shared/auth/auth-guard.service';
+// import { AuthGuard } from './shared/auth/auth-guard.service';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { ToastrModule } from 'ngx-toastr';
 import { ConfirmLeaveComponent } from './shared/components/confirm-leave/confirm-leave.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { AuthGuard } from '../app/core/guards/auth.guard';
 
 registerLocaleData(en);
 
@@ -50,7 +51,7 @@ registerLocaleData(en);
       closeButton: true
     })
   ],
-  providers: [{ provide: NZ_I18N, useValue: en_US }],
+  providers: [{ provide: NZ_I18N, useValue: en_US }, AuthGuard],
   bootstrap: [AppComponent],
   entryComponents: [
     ConfirmLeaveComponent,
