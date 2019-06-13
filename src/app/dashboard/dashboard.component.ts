@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 })
 export class DashboardComponent implements OnInit {
 
-  dashbordData = []
+  dashbordData = [];
 
   constructor(private dashboardService: DashboardService,
               private router: Router) { }
